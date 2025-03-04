@@ -1,0 +1,32 @@
+/* Styles for the chord container */
+.chord-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  border: 1px solid green;
+}
+
+/* Styles for the notes container */
+.notes-container {
+  display: flex;
+  flex-direction: row; /* Display notes in a single line */
+  align-items: center;
+  justify-content: center;
+  height: auto; /* Adjust height */
+  gap: 1rem; /* Margin between notes */
+  font-size: small;
+  border: 1px solid red;
+}
+
+/* Styles for the chord wrapper */
+.chord-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Space between name and notes */
+  padding: 0.5rem;
+  border: 1px solid yellow;
+}
