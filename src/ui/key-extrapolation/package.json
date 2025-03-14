@@ -36,7 +36,16 @@
       "last 1 safari version"
     ]
   },
+  "compilerOptions": {
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
   "devDependencies": {
-    "@types/react": "^19.0.10"
+    "@types/jest": "^29.5.14",
+    "@types/react": "^19.0.10",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.6"
   }
 }

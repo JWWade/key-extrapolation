@@ -1,15 +1,16 @@
 import './App.css';
-import Chord from './components/chord/chord.tsx';
-import { chordQualities } from './constants/chord-qualities.ts';
+import Key from './components/key/key.tsx';
+import { keyQualities } from './constants/keys.ts';
+import { HarmonicStructure } from './utilities/keys/key-factory.ts';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Chord name="C" quality={chordQualities.minor.name} />
-        <Chord name="A" quality={chordQualities.diminished.name} />
-        <Chord name="Gb" quality={chordQualities.major.name} />
-        <Chord name="C" quality={chordQualities.major.name} />
+        <Key rootNote="C" quality={keyQualities.major.name} harmonicStructure={HarmonicStructure.Ternary} />
+        <Key rootNote="C" quality={keyQualities.naturalMinor.name} harmonicStructure={HarmonicStructure.Ternary} />
+        <Key rootNote="C" quality={keyQualities.harmonicMinor.name} harmonicStructure={HarmonicStructure.Ternary} />
+        <Key rootNote="C" quality={keyQualities.diminished.name} harmonicStructure={HarmonicStructure.Ternary} />
       </header>
     </div>
   );

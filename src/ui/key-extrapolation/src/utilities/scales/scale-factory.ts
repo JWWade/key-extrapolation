@@ -7,8 +7,8 @@ function CreateScale(rootNote: string, toneSystem: string[], intervals: number[]
   const scale = [rootNote];
   let currentIndex = rootIndex;
 
-  for (const interval of intervals) {
-    currentIndex = (currentIndex + interval) % toneSystem.length;
+  for (let i = 0; i < intervals.length - 1; i++) {
+    currentIndex = (currentIndex + intervals[i]) % toneSystem.length;
     scale.push(toneSystem[currentIndex]);
   }
 
