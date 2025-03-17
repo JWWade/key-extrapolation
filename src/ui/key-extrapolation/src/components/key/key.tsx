@@ -16,9 +16,11 @@ const Key = ({ rootNote, quality, harmonicStructure }: KeyProps) => {
       {key.chords.map((chord) => (
         <Chord
           key={`${chord.name}${chord.quality}-${key.chords.indexOf(chord)}`}
+          scale={key.scale}
           name={chord.name}
           quality={chord.quality}
           scaleDegree={key.scaleDegrees[key.chords.indexOf(chord)]}
+          harmonicStructure={harmonicStructure}
         />
       ))}
     </div>

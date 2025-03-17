@@ -50,17 +50,4 @@ export const keyQualities = {
             chordQualities.diminished.shortName,
             chordQualities.diminished.shortName],
     },
-    quartal: {
-        name: 'quartal',
-        scaleDegrees: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7'],
-        chordQualities: [
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName,
-            chordQualities.quartal.shortName],
-    },
 };

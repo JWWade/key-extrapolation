@@ -1,17 +1,19 @@
 import React from "react";
-import { CreateChord } from "../../utilities/chords/chord-factory";
-import { twelveTone } from '../../constants/tone-systems';
+import { CreateChordFromScale } from "../../utilities/chords/chord-factory";
 import "./chord.css";
 import Notes from "./components/notes";
+import { HarmonicStructure } from "../../utilities/keys/key-factory";
 
 type ChordProps = Readonly<{
   name: string;
+  scale: string[];
   quality: string;
   scaleDegree: string;
+  harmonicStructure : HarmonicStructure;
 }>;
 
-const Chord = ({ name, quality, scaleDegree }: ChordProps) => {
-  const chord = CreateChord(name, twelveTone, quality, []);
+const Chord = ({ name, scale, quality, scaleDegree, harmonicStructure }: ChordProps) => {
+  const chord = CreateChordFromScale(name, scale, quality, [], harmonicStructure);
   return (
     <div className="chord-wrapper">
       <div className="chord-scale-degree">

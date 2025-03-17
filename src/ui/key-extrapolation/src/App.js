@@ -11,6 +11,7 @@ function App() {
         <Key rootNote="C" quality={keyQualities.naturalMinor.name} harmonicStructure={HarmonicStructure.Ternary} />
         <Key rootNote="C" quality={keyQualities.harmonicMinor.name} harmonicStructure={HarmonicStructure.Ternary} />
         <Key rootNote="C" quality={keyQualities.diminished.name} harmonicStructure={HarmonicStructure.Ternary} />
+        <Key rootNote="C" quality={keyQualities.major.name} harmonicStructure={HarmonicStructure.Quartal} />
       </header>
     </div>
   );

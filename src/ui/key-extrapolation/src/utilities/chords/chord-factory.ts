@@ -1,37 +1,47 @@
 import Chord from '../../types/chords/chord';
-import { keyIntervals } from '../../constants/intervals';
-import { CreateScale } from '../scales/scale-factory';
 import { chordQualities } from '../../constants/chord-qualities';
+import { HarmonicStructure } from '../keys/key-factory';
 
-function CreateChord(chordRootNote: string, toneSystem: string[], quality: string, extensions: string[] = []): Chord {
+function CreateChordFromScale(chordRootNote: string, scale: string[], quality: string, extensions: string[] = [], harmonicStructure : HarmonicStructure): Chord {
   return {
     name: chordRootNote,
-    notes: GetNotes(chordRootNote, toneSystem, quality, extensions),
+    notes: GetNotes(chordRootNote, scale, quality, extensions, harmonicStructure),
     quality: GetShortChordQualityName(quality) ?? quality,
     extensions: extensions
   };
 }
 
 // Construct the chord by taking every other note from the scale
-function GetTriad(scale: string[]): string[] {
+function GetTriad(scale: string[], harmonicStructure : HarmonicStructure): string[] {
+  const offset : number = harmonicStructure === HarmonicStructure.Ternary ? 2 : 3;
   const triad = [];
   for (let i = 0; i < 3; i++) {
-    triad.push(scale[i * 2]);
+    triad.push(scale[i * offset]);
   }
+
+  console.log(`triad: ${triad[0]}-${triad[1]}-${triad[2]}`);
+
   return triad;
 }
 
-function GetNotes(rootNote: string, toneSystem: string[], quality: string, extensions: string[]): string[] {
-  const isMinor = quality === 'minor' || quality === 'min';
+function GetNotes(rootNote: string, scale: string[], quality: string, extensions: string[], harmonicStructure: HarmonicStructure): string[] {
   const fullQuality = Object.keys(chordQualities).find(key => chordQualities[key as keyof typeof chordQualities].shortName === quality) ?? quality;
   const chordQuality = chordQualities[fullQuality as keyof typeof chordQualities];
   if (!chordQuality) {
     throw new Error(`Chord quality '${quality}' not found`);
   }
-  const scaleIntervals = isMinor ? keyIntervals.naturalMinor : keyIntervals[chordQuality.name] || [];
-  const scale = CreateScale(rootNote, toneSystem, scaleIntervals);
 
-  const chordNotes = GetTriad(scale);
+  // Rotate the scale so that rootNote is the first element
+  const rootIndex = scale.indexOf(rootNote);
+  if (rootIndex === -1) {
+    throw new Error(`Root note '${rootNote}' not found in scale`);
+  }
+  
+  const rotatedScale = [...scale.slice(rootIndex), ...scale.slice(0, rootIndex)];
+  
+  console.log(`scale for ${rootNote}${quality}_${harmonicStructure}: ${rotatedScale}`);
+
+  const chordNotes = GetTriad(rotatedScale, harmonicStructure);
 
   // For now, ignoring extensions
   return chordNotes;
@@ -44,4 +54,4 @@ function GetShortChordQualityName(quality: string): string | undefined {
   return match ? match.shortName : undefined;
 }
 
-export { CreateChord, GetNotes, GetShortChordQualityName };
+export { CreateChordFromScale, GetNotes, GetShortChordQualityName };

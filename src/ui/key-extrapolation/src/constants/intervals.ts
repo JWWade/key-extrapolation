@@ -9,5 +9,4 @@ export const keyIntervals: { [key: string]: number[] } = {
     [keyQualities.naturalMinor.name]: [W, H, W, W, H, W, W],
     [keyQualities.harmonicMinor.name]: [W, H, W, W, H, W_H, H],
     [keyQualities.diminished.name]: [W, H, W, H, W, H, W, H],
-    [keyQualities.quartal.name]: [W, W, H, W, W, W, H],
 };
